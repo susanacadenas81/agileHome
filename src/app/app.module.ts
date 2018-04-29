@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -11,6 +13,14 @@ import { LoginComponent } from './componentes/login/login.component';
 import { PrivadoComponent } from './componentes/privado/privado.component';
 import { PrivateComponent } from './componentes/private/private.component';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
+
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { environment } from '../environments/environment';
+
+import{ AuthService } from './servicios/auth.service';
 
 
 @NgModule({
@@ -26,9 +36,12 @@ import { NotFoundComponent } from './componentes/not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
