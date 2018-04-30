@@ -32,6 +32,12 @@ public password:string;
  	then ((res)=>{
  		this.router.navigate(['/private'])
  	}).catch( err => console.log(err.message));
- 	;
+ 	
+ }
+ onClickFacebookLogin(){
+ 	this.authService.loginFacebook().
+ 	then ((res)=>{
+ 		this.router.navigate(['/private'])
+ 	}).catch( err => console.log(err.message));
  }
 }
