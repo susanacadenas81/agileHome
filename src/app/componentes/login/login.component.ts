@@ -28,6 +28,7 @@ public password:string;
   	})
   }
  onClickGoogleLogin(){
+
  	this.authService.loginGoogle().
  	then ((res)=>{
  		this.router.navigate(['/private'])
@@ -35,9 +36,19 @@ public password:string;
  	
  }
  onClickFacebookLogin(){
+
  	this.authService.loginFacebook().
  	then ((res)=>{
  		this.router.navigate(['/private'])
  	}).catch( err => console.log(err.message));
+
+ }
+
+ onClickTwitterLogin(){
+ 	this.authService.loginTwitter().
+ 	then ((res)=>{
+ 		this.router.navigate(['/private'])
+ 	}).catch( err => console.log(err.message));
+
  }
 }
