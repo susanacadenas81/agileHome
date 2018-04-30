@@ -25,6 +25,7 @@ import { environment } from '../environments/environment';
 
 import{ AuthService } from './servicios/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { FormuInmuebleComponent } from './componentes/formu-inmueble/formu-inmueble.component';
 
 
 
@@ -37,7 +38,8 @@ import { AuthGuard } from './guards/auth.guard';
     LoginComponent,
     PrivadoComponent,
     PrivateComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FormuInmuebleComponent
   ],
   imports: [
     BrowserModule,
