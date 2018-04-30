@@ -27,4 +27,11 @@ public password:string;
   		this.router.navigate(['/login']);
   	})
   }
+ onClickGoogleLogin(){
+ 	this.authService.loginGoogle().
+ 	then ((res)=>{
+ 		this.router.navigate(['/private'])
+ 	}).catch( err => console.log(err.message));
+ 	;
+ }
 }
