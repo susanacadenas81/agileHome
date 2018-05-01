@@ -1,3 +1,226 @@
-<p>
-  formu-inmueble works!
-</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">    
+    <h2>Añadir nuevo inmueble</h2>
+    <form (ngSubmit)="enviarForm()" #formpro="ngForm">
+      <!-- #formpro es un identificador local del formulario
+           ngForm es una clase de FormsModule-->
+        <div class="form-group">
+          <label>Nombre</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="nombre.valid"></i>
+           <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="nombre.invalid && nombre.touched"></i>
+          <input type="text" 
+                 class="form-control"
+                 id="nombre"
+                 name="nombre" 
+                 ngModel
+                 required
+                 #nombre="ngModel">
+          <p class="alert alert-danger" *ngIf="nombre.invalid && nombre.touched">
+            El campo nombre es obligatorio.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Apellidos</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="ape.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="ape.invalid && ape.touched"></i>
+          <input type="text" 
+                 class="form-control"
+                 id="ape"
+                 name="ape"
+                 ngModel
+                 required
+                 #ape="ngModel">
+          <p class="alert alert-danger" *ngIf="ape.invalid && ape.touched">
+            El campo apellido es obligatorio.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Dirección del inmueble</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="direccion.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="direccion.invalid && direccion.touched"></i>
+          <input type="text" 
+                 class="form-control"
+                 id="direccion"
+                 name="direccion"
+                 ngModel
+                 required
+                 #direccion="ngModel">
+          <p class="alert alert-danger" *ngIf="direccion.invalid && direccion.touched">
+            El campo Dirección es obligatorio.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Código Postal</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="cp.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="cp.invalid && cp.touched"></i>
+          <input type="text" 
+                 class="form-control"
+                 id="cp"
+                 name="cp"
+                 ngModel
+                 required
+                 #cp="ngModel">
+          <p class="alert alert-danger" *ngIf="cp.invalid && cp.touched">
+            El campo Código Postal es obligatorio.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Localidad</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="localidad.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="localidad.invalid && localidad.touched"></i>
+          <input type="text" 
+                 class="form-control"
+                 id="localidad" 
+                 name="localidad"
+                 ngModel
+                 required
+                 #localidad="ngModel">
+          <p class="alert alert-danger" *ngIf="localidad.invalid && localidad.touched">
+            El campo Localidad es obligatorio.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="provincia">Provincia</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="provincia.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="provincia.invalid && provincia.touched"></i> 
+          <select class="form-control" 
+                  id="provincia"
+                  ngModel
+                  name="provincia"
+                  required
+                  #provincia="ngModel">
+                  <option value="">Seleccione la provincia</option> 
+                  <option *ngFor="let provincia of provincias"
+                  [value]="provincia">{{provincia}} </option> 
+          </select>
+          <p class="alert alert-danger" *ngIf="provincia.invalid && provincia.touched">
+            El campo Provincia es obligatorio.
+          </p>
+        </div> 
+
+        <div class="form-group">
+          <label>Teléfono</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="telefono.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="telefono.invalid && telefono.touched"></i>
+          <input type="number" 
+                 class="form-control"
+                 id="telefono"
+                 name="telefono"
+                 ngModel
+                 required
+                 #telefono="ngModel">
+          <p class="alert alert-danger" *ngIf="telefono.invalid && telefono.touched">
+            El campo Teléfono es obligatorio.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Título del inmueble</label>
+          <i class="fa fa-check-circle check" 
+               *ngIf="titulo.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="titulo.invalid && titulo.touched"></i>
+          <input type="text" 
+                 class="form-control"
+                 id="titulo"
+                 name="titulo"
+                 ngModel
+                 required
+                 #titulo="ngModel">
+          <p class="alert alert-danger" *ngIf="titulo.invalid && titulo.touched">
+            Por favor introduzca un título
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Descripción del inmueble</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="des.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="des.invalid && des.touched"></i>
+          <textarea
+                 class="form-control"
+                 id="des"
+                 name="des"
+                 ngModel
+                 required
+                 #des="ngModel">
+            </textarea>
+          <p class="alert alert-danger" *ngIf="des.invalid && des.touched">
+            El campo Persona de contacto es obligatorio.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="car">Características</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="car.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="car.invalid && car.touched"></i> 
+          <select multiple class="form-control" 
+                  id="car"
+                  ngModel
+                  name="car"
+                  required
+                  #car="ngModel">
+                  <option value="">Mantenga AltGr pulsado para seleccionar más de una característica</option> 
+                  <option *ngFor="let car of caracteristicas"
+                  [value]="car">{{car}} </option> 
+          </select>
+          <p class="alert alert-danger" *ngIf="car.invalid && car.touched">
+            Escoge alguna característica
+          </p>
+        </div> 
+
+		<div class="form-group">
+          <label>Fotos</label>
+          <input type="file" 
+                 class="form-control"
+                 id="foto"
+                 name="foto"
+                 ngModel
+                 #foto="ngModel"> 
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+      <button type="submit" 
+              class="btn btn-success"
+              [disabled]="!formpro.valid"
+              >Añadir Inmueble</button>
+      <p class="alert alert-danger " *ngIf="!formpro.valid">
+        Por favor complete todos los campos
+      </p> 
+
+    <hr>
+
+    </form>
+  </div>
+</div>
