@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +27,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 import{ AuthService } from './servicios/auth.service';
+import { InmuebleServService } from './servicios/inmueble-serv.service';
 import { AuthGuard } from './guards/auth.guard';
 
 
@@ -51,11 +53,13 @@ import { AuthGuard } from './guards/auth.guard';
     FormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    FlashMessagesModule
+    FlashMessagesModule,
+    HttpModule
   ],
   providers: [AuthService,
   AuthGuard,
-  FlashMessagesService
+  FlashMessagesService,
+  InmuebleServService
   ],
   bootstrap: [AppComponent]
 })

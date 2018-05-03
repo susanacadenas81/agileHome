@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { InmuebleServService }from '../../servicios/inmueble-serv.service'
 
 @Component({
   selector: 'app-formu-inmueble',
@@ -24,7 +25,7 @@ export class FormuInmuebleComponent implements OnInit {
 
    caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
 
-  constructor() {
+  constructor(private inmuebleServ:InmuebleServService) {
     this.inmueble = {
       nombre: '',
       ape: '',
@@ -57,8 +58,10 @@ export class FormuInmuebleComponent implements OnInit {
     this.inmueble.car = this.forminm.value.car;
     this.inmueble.foto = this.forminm.value.foto;
 
+    this.inmuebleServ.postInmueble(this.inmueble).subscribe(newinm=>alert( 'Inmueble guardado correctamente'));
+
     this.forminm.reset();  
-    console.log(this.inmueble.foto);
+    
   }
 
 }
