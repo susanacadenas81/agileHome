@@ -14,6 +14,7 @@ import { PrivadoComponent } from './componentes/privado/privado.component';
 import { PrivateComponent } from './componentes/private/private.component';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { FormuInmuebleComponent } from './componentes/formu-inmueble/formu-inmueble.component';
+import { FormBusquedaComponent } from './componentes/form-busqueda/form-busqueda.component';
 
 
 
@@ -30,6 +31,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,8 @@ import { AuthGuard } from './guards/auth.guard';
     PrivadoComponent,
     PrivateComponent,
     NotFoundComponent,
-    FormuInmuebleComponent
+    FormuInmuebleComponent,
+    FormBusquedaComponent
   ],
   imports: [
     BrowserModule,
