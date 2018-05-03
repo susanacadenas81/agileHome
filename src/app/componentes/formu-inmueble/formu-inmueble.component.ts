@@ -8,9 +8,9 @@ import { NgForm } from '@angular/forms';
 })
 export class FormuInmuebleComponent implements OnInit {
 
-   @ViewChild('formpro') formpro: NgForm;
+   @ViewChild('forminm') forminm: NgForm;
   
-  proveedor: any;
+  inmueble: any;
 
   total: number = 0;
 
@@ -25,7 +25,7 @@ export class FormuInmuebleComponent implements OnInit {
    caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
 
   constructor() {
-    this.proveedor = {
+    this.inmueble = {
       nombre: '',
       ape: '',
       direccion: '',
@@ -45,20 +45,20 @@ export class FormuInmuebleComponent implements OnInit {
 
   enviarForm() {
 
-    this.proveedor.nombre = this.formpro.value.nombre;
-    this.proveedor.ape = this.formpro.value.ape;
-    this.proveedor.direccion = this.formpro.value.direccion;
-    this.proveedor.cp = this.formpro.value.cp;
-    this.proveedor.localidad = this.formpro.value.localidad;
-    this.proveedor.provincia = this.formpro.value.provincia;
-    this.proveedor.telefono = this.formpro.value.telefono;
-    this.proveedor.titulo = this.formpro.value.titulo;
-    this.proveedor.des = this.formpro.value.des;
-    this.proveedor.car = this.formpro.value.car;
-    this.proveedor.foto = this.formpro.value.foto;
+    this.inmueble.nombre = this.forminm.value.nombre;
+    this.inmueble.ape = this.forminm.value.ape;
+    this.inmueble.direccion = this.forminm.value.direccion;
+    this.inmueble.cp = this.forminm.value.cp;
+    this.inmueble.localidad = this.forminm.value.localidad;
+    this.inmueble.provincia = this.forminm.value.provincia;
+    this.inmueble.telefono = this.forminm.value.telefono;
+    this.inmueble.titulo = this.forminm.value.titulo;
+    this.inmueble.des = this.forminm.value.des;
+    this.inmueble.car = this.forminm.value.car;
+    this.inmueble.foto = this.forminm.value.foto;
 
-    this.formpro.reset();  
-    console.log(this.proveedor.foto);
+    this.forminm.reset();  
+    console.log(this.inmueble.foto);
   }
 
 }

@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">    
     <h2>Añadir nuevo inmueble</h2>
-    <form (ngSubmit)="enviarForm()" #formpro="ngForm">
-      <!-- #formpro es un identificador local del formulario
-           ngForm es una clase de FormsModule-->
+    <form (ngSubmit)="enviarForm()" #forminm="ngForm">
+
         <div class="form-group">
           <label>Nombre</label>
            <i class="fa fa-check-circle check" 
                *ngIf="nombre.valid"></i>
            <i class="fa fa-exclamation-circle uncheck"
                *ngIf="nombre.invalid && nombre.touched"></i>
+          
           <input type="text" 
                  class="form-control"
                  id="nombre"
@@ -17,6 +17,7 @@
                  ngModel
                  required
                  #nombre="ngModel">
+
           <p class="alert alert-danger" *ngIf="nombre.invalid && nombre.touched">
             El campo nombre es obligatorio.
           </p>
@@ -194,6 +195,7 @@
 		<div class="form-group">
           <label>Fotos</label>
           <input type="file" 
+          		 multiple="true" 
                  class="form-control"
                  id="foto"
                  name="foto"
@@ -201,21 +203,11 @@
                  #foto="ngModel"> 
 		</div>
 
-
-
-
-
-
-
-
-
-
-
       <button type="submit" 
               class="btn btn-success"
-              [disabled]="!formpro.valid"
+              [disabled]="!forminm.valid"
               >Añadir Inmueble</button>
-      <p class="alert alert-danger " *ngIf="!formpro.valid">
+      <p class="alert alert-danger " *ngIf="!forminm.valid">
         Por favor complete todos los campos
       </p> 
 
