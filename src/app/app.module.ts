@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -23,6 +22,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { FlashMessagesService } from 'angular2-flash-messages'
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import { environment } from '../environments/environment';
 
@@ -54,7 +54,8 @@ import { AuthGuard } from './guards/auth.guard';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     FlashMessagesModule,
-    HttpModule
+    HttpModule,
+    AngularFireStorageModule
   ],
   providers: [AuthService,
   AuthGuard,

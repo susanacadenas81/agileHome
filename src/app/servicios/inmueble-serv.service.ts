@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
-import 'rxjs/Rx'; 
+import 'rxjs/Rx';
 
 @Injectable()
 export class InmuebleServService {
 
-  clisURL ='https://agilehome-fe94b.firebaseio.com/inmuebles.json'
+clisURL ='https://agilehome-fe94b.firebaseio.com/inmuebles.json'
 cliURL = 'https://agilehome-fe94b.firebaseio.com/inmuebles'
 
   constructor(private http:Http) { }

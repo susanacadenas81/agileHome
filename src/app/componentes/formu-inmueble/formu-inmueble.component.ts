@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { InmuebleServService }from '../../servicios/inmueble-serv.service'
+import { InmuebleServService }from '../../servicios/inmueble-serv.service';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-formu-inmueble',
@@ -15,6 +17,10 @@ export class FormuInmuebleComponent implements OnInit {
 
   total: number = 0;
 
+  uploadPercent: Observable<number>;
+
+  downloadURL: Observable<string>;
+
   provincias: string[] = [ 'Álava','Albacete','Alicante','Almería','Asturias','Ávila','Badajoz',
      'Barcelona','Burgos', 'Cáceres', 'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba',
      'La Coruña','Cuenca','Gerona','Granada','Guadalajara', 'Guipúzcoa','Huelva','Huesca',
@@ -25,7 +31,7 @@ export class FormuInmuebleComponent implements OnInit {
 
    caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
 
-  constructor(private inmuebleServ:InmuebleServService) {
+  constructor(private inmuebleServ:InmuebleServService,private storage: AngularFireStorage) {
     this.inmueble = {
       nombre: '',
       ape: '',
@@ -58,10 +64,21 @@ export class FormuInmuebleComponent implements OnInit {
     this.inmueble.car = this.forminm.value.car;
     this.inmueble.foto = this.forminm.value.foto;
 
+
     this.inmuebleServ.postInmueble(this.inmueble).subscribe(newinm=>alert( 'Inmueble guardado correctamente'));
 
     this.forminm.reset();  
     
+  }
+  uploadFile(event) {
+    const file = event.target.files[0];
+    const filePath = 'img/inmuebles/'+this.forminm.value.foto;
+    const task = this.storage.upload(filePath, file);
+    
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+    // get notified when the download URL is available
+    this.downloadURL = task.downloadURL();
   }
 
 }
