@@ -195,16 +195,15 @@
 		<div class="form-group">
           <label>Fotos</label>
           <input type="file" 
-          (change)="uploadFile($event)"
-          		   multiple="true" 
+          (change)="uploadFile($event)" 
                  class="form-control"
                  id="foto"
                  name="foto"
                  ngModel
                  #foto="ngModel"> 
 		</div>
-    <div>{{ uploadPercent | async }}</div>
-    <a [href]="downloadURL | async">{{ downloadURL}}</a>
+    <!-- <div>Cargando al {{ uploadPercent | async }}%</div> 
+   <a [href]="downloadURL | async">{{ downloadURL.value }}</a>-->
 
       <button type="submit" 
               class="btn btn-success"

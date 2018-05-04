@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { InmuebleServService }from '../../servicios/inmueble-serv.service';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
+import {AuthService } from '../../servicios/auth.service';
 
 @Component({
   selector: 'app-formu-inmueble',
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
 export class FormuInmuebleComponent implements OnInit {
 
    @ViewChild('forminm') forminm: NgForm;
+
   
   inmueble: any;
 
@@ -20,6 +22,10 @@ export class FormuInmuebleComponent implements OnInit {
   uploadPercent: Observable<number>;
 
   downloadURL: Observable<string>;
+
+  url:any;
+
+  usuario:any;
 
   provincias: string[] = [ 'Álava','Albacete','Alicante','Almería','Asturias','Ávila','Badajoz',
      'Barcelona','Burgos', 'Cáceres', 'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba',
@@ -31,7 +37,7 @@ export class FormuInmuebleComponent implements OnInit {
 
    caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
 
-  constructor(private inmuebleServ:InmuebleServService,private storage: AngularFireStorage) {
+  constructor(private inmuebleServ:InmuebleServService,private storage: AngularFireStorage,public authService:AuthService) {
     this.inmueble = {
       nombre: '',
       ape: '',
@@ -43,11 +49,14 @@ export class FormuInmuebleComponent implements OnInit {
       titulo: '',
       des: '',
       car:[],
-      foto:''
+      foto:'',
+      user:'',
     }
+
   }
 
   ngOnInit() {
+    this.authService.getAuth().subscribe( auth => this.usuario=auth.displayName);    
   }
 
   enviarForm() {
@@ -62,7 +71,9 @@ export class FormuInmuebleComponent implements OnInit {
     this.inmueble.titulo = this.forminm.value.titulo;
     this.inmueble.des = this.forminm.value.des;
     this.inmueble.car = this.forminm.value.car;
-    this.inmueble.foto = this.forminm.value.foto;
+    this.inmueble.user = this.usuario;
+    this.inmueble.foto = this.url;
+   
 
 
     this.inmuebleServ.postInmueble(this.inmueble).subscribe(newinm=>alert( 'Inmueble guardado correctamente'));
@@ -74,11 +85,8 @@ export class FormuInmuebleComponent implements OnInit {
     const file = event.target.files[0];
     const filePath = 'img/inmuebles/'+this.forminm.value.foto;
     const task = this.storage.upload(filePath, file);
-    
-    // observe percentage changes
-    this.uploadPercent = task.percentageChanges();
-    // get notified when the download URL is available
     this.downloadURL = task.downloadURL();
+     this.downloadURL.subscribe(desc=>this.url=desc.valueOf());
   }
 
 }
