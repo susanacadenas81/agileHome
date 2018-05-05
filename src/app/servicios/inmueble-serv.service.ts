@@ -43,7 +43,7 @@ cliURL = 'https://agilehome-fe94b.firebaseio.com/inmuebles'
 
   }
 
-  delCli ( id$: string) {
+  delInm ( id$: string) {
     const url = `${this.cliURL}/${id$}.json`;
     return this.http.delete( url )
         .map ( res =>{console.log(res.json);

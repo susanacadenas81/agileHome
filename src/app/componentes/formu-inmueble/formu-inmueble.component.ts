@@ -4,6 +4,7 @@ import { InmuebleServService }from '../../servicios/inmueble-serv.service';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
 import {AuthService } from '../../servicios/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formu-inmueble',
@@ -37,7 +38,7 @@ export class FormuInmuebleComponent implements OnInit {
 
    caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
 
-  constructor(private inmuebleServ:InmuebleServService,private storage: AngularFireStorage,public authService:AuthService) {
+  constructor(private inmuebleServ:InmuebleServService,private router:Router,private storage: AngularFireStorage,public authService:AuthService) {
     this.inmueble = {
       nombre: '',
       ape: '',
@@ -75,18 +76,21 @@ export class FormuInmuebleComponent implements OnInit {
     this.inmueble.foto = this.url;
    
 
+    this.inmuebleServ.postInmueble(this.inmueble).subscribe(newinm=>{
+      alert( 'Inmueble guardado correctamente');
+      this.router.navigate(['/private']);
+    });
 
-    this.inmuebleServ.postInmueble(this.inmueble).subscribe(newinm=>alert( 'Inmueble guardado correctamente'));
-
-    this.forminm.reset();  
+    this.forminm.reset();   
     
   }
+
   uploadFile(event) {
     const file = event.target.files[0];
     const filePath = 'img/inmuebles/'+this.forminm.value.foto;
     const task = this.storage.upload(filePath, file);
     this.downloadURL = task.downloadURL();
-     this.downloadURL.subscribe(desc=>this.url=desc.valueOf());
+    this.downloadURL.subscribe(desc=>this.url = desc.valueOf());
   }
 
 }

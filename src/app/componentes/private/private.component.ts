@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import { InmuebleServService }from '../../servicios/inmueble-serv.service';
 import { Observable } from 'rxjs';
 import {AuthService } from '../../servicios/auth.service';
-
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-private',
   templateUrl: './private.component.html',
@@ -13,8 +13,13 @@ export class PrivateComponent implements OnInit {
 
   private inmueblesPublicados:Object;
   public inms:Array<any>;
+  private inmueblesPub : Boolean;
 
-  constructor(public router:Router,private inmuebleServ:InmuebleServService,public authService:AuthService) { 
+  //poner la llave
+  //refrescar la vista después de borrar un inmueble
+  //problema de asincronismo con la foto al subir el inmueble
+
+  constructor(public router:Router,public flashMensaje:FlashMessagesService,private inmuebleServ:InmuebleServService,public authService:AuthService) { 
 
   		this.inms=[];
 
@@ -25,13 +30,22 @@ export class PrivateComponent implements OnInit {
   	this.authService.getAuth().subscribe( auth => user = auth.email);
   	let inm = this.inmuebleServ.getInmuebles().subscribe(list => {let claves = Object.keys(list);
   	for(let inmueble of claves){
+  		
   		if(list[inmueble].user == user) {
+      list[inmueble].id = inmueble;
   		this.inms.push(list[inmueble]);
+  		this.inmueblesPub = true;
   		}
+
   	}
   	});
-  	console.log(this.inms);
-  	console.log(user);  //----------------
+  }
+
+  borrar(id){
+  	this.inmuebleServ.delInm(id).subscribe(x=>{
+    this.flashMensaje.show('Inmueble borrado',{cssClass:'alert-success',timeout:4000});
+    });
+    
   }
 
 

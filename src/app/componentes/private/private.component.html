@@ -1,24 +1,25 @@
 <div class="jumbotron mt-3" >
   <h2 class="display-3">Tus inmuebles publicados</h2>
-  <p class="lead">Esta es la relación de inmuebles que tienes publicados en nuestro portal </p>
+  <p class="lead" *ngIf="inmueblesPub">Esta es la relación de inmuebles que tienes publicados en nuestro portal </p>
+  <p class = "lead" *ngIf="!inmueblesPub">Aún no has publicado ningún inmueble, rellena el formulario y publica ya. Cuando el inmueble esté disponible para las visitas no olvides poner la señal de visita express <i class="fa fa-key"></i></p>
   <hr class="my-4">
   
   <div *ngFor="let x of inms">
   <div class="card mb-3">
   <h3 class="card-header">{{x.titulo}}</h3>
   <div class="card-body">
-  <img src="https://firebasestorage.googleapis.com/v0/b/agilehome-fe94b.appspot.com/o/img%2Finmuebles%2FC%3A%5Cfakepath%5Cslider3.jpg?alt=media&token=b198d848-6c9a-435b-87f9-32ee68935d00" alt="Sin Imágenes" style="height: 300px; width: 50%; display: inline;align-self: center" >
+  <img src={{x.foto}} alt="Sin Imágenes" style="width: 50%;" >
   <div class="card-body">
-    <p class="card-text">{{x.desc}}</p>
+    <p class="card-text">{{x.des}}</p>
     <hr class="my-4">
-    <h6>Características</h6>
+    <h5>Características:</h5>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item" *ngFor="let ca of x.car">{{ca}}</li>
   </ul>
   <div class="card-body">
     <a href="#" class="card-link">Editar Inmueble</a>
-    <a href="#" class="card-link">Eliminar Inmueble</a>
+    <a (click)="borrar(x.id)" class="btn btn-primary" role="button" >Eliminar Inmueble</a>
   </div>
 </div>
 </div>
