@@ -56,7 +56,7 @@ export class FormuInmuebleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getAuth().subscribe( auth => this.usuario=auth.displayName);    
+    this.authService.getAuth().subscribe( auth => this.usuario=auth.email );    
   }
 
   enviarForm() {
