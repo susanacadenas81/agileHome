@@ -6,7 +6,7 @@
   
   <div *ngFor="let x of inms">
   <div class="card mb-3">
-  <h3 class="card-header">{{x.titulo}}</h3>
+  <h3 class="card-header">{{x.titulo}} <i *ngIf="x.llave" class="fa fa-key"></i> </h3>
   <div class="card-body">
   <img src={{x.foto}} alt="Sin Imágenes" style="width: 50%;" >
   <div class="card-body">
@@ -22,7 +22,12 @@
   </div>
   <div class="card-body">
     <a href="#" class="card-link">Editar Inmueble</a>
-    <a (click)="borrar(x.id)" class="btn btn-primary" role="button" >Eliminar Inmueble</a>
+    <button type="button" (click)="borrar(x.id)" class="btn btn-link">Eliminar Inmueble</button>
+     <button type="button" (click)="express(x,x.id)" class="btn btn-link" *ngIf = "!x.llave">Visita Express <i class="fa fa-key"></i></button>
+      <button type="button" (click)="express(x,x.id)" class="btn btn-link" *ngIf = "x.llave"> Pausar visita express <i class="fa fa-key"></i></button>
+    <!--<a (click)="borrar(x.id)"  class="card-link" role="button" >Eliminar Inmueble</a>
+    <a (click)="express(x,x.id)" role="button" *ngIf = "!x.llave" >Visita Express <i class="fa fa-key"></i></a>
+    <a (click)="express(x,x.id)" role="button" *ngIf = "x.llave" >Pausar Visitas Express <i class="fa fa-key"></i></a>-->
   </div>
 </div>
 </div>

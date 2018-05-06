@@ -53,6 +53,7 @@ export class FormuInmuebleComponent implements OnInit {
       car:[],
       foto:'',
       user:'',
+      llave: Boolean
     }
 
   }
@@ -75,6 +76,7 @@ export class FormuInmuebleComponent implements OnInit {
     this.inmueble.car = this.forminm.value.car;
     this.inmueble.user = this.usuario;
     this.inmueble.foto = this.url;
+    this.inmueble.llave = false;
    
 
     this.inmuebleServ.postInmueble(this.inmueble).subscribe(newinm=>{

@@ -51,5 +51,10 @@ export class PrivateComponent implements OnInit {
     
   }
 
+  express(inm,id){
+    inm.llave=!inm.llave;
+    this.inmuebleServ.putInmueble(inm,id);
+  }
+
 
 }
