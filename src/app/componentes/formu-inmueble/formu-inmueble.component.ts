@@ -5,6 +5,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
 import {AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-formu-inmueble',
@@ -38,7 +39,7 @@ export class FormuInmuebleComponent implements OnInit {
 
    caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
 
-  constructor(private inmuebleServ:InmuebleServService,private router:Router,private storage: AngularFireStorage,public authService:AuthService) {
+  constructor(private flashMensaje:FlashMessagesService,private inmuebleServ:InmuebleServService,private router:Router,private storage: AngularFireStorage,public authService:AuthService) {
     this.inmueble = {
       nombre: '',
       ape: '',
@@ -77,7 +78,7 @@ export class FormuInmuebleComponent implements OnInit {
    
 
     this.inmuebleServ.postInmueble(this.inmueble).subscribe(newinm=>{
-      alert( 'Inmueble guardado correctamente');
+      this.flashMensaje.show('Inmueble guardado',{cssClass:'alert-success',timeout:4000});
       this.router.navigate(['/private']);
     });
 
