@@ -15,7 +15,12 @@ export class PrivateComponent implements OnInit {
   public inms:Array<any>;
   private inmueblesPub : Boolean;
 
-  //poner la llave
+  //crear una nueva vista para ampliar información del inm
+
+  //subir varias fotos
+
+  //borrar imágenes al borrar el inmueble
+
   //problema de asincronismo con la foto al subir el inmueble
 
   constructor(private router:Router,private flashMensaje:FlashMessagesService,private inmuebleServ:InmuebleServService,private authService:AuthService) { 
@@ -44,16 +49,22 @@ export class PrivateComponent implements OnInit {
 
   borrar(id){
   	this.inmuebleServ.delInm(id).subscribe(x=>{
-    this.flashMensaje.show('Inmueble borrado',
-      {cssClass:'alert-success',timeout:4000});
     document.location.href = document.location.href;
+     this.flashMensaje.show('Inmueble borrado',
+      {cssClass:'alert-success',timeout:4000});
     });
     
   }
 
   express(inm,id){
+
     inm.llave=!inm.llave;
     this.inmuebleServ.putInmueble(inm,id);
+
+  }
+
+  amplInf(inm,id){
+   
   }
 
 

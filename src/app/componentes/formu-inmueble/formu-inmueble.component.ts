@@ -53,7 +53,7 @@ export class FormuInmuebleComponent implements OnInit {
       car:[],
       foto:'',
       user:'',
-      llave: Boolean
+      llave: Boolean,
     }
 
   }
