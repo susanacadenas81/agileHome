@@ -42,6 +42,44 @@
         </div>
 
         <div class="form-group">
+          <label for="tipo">Tipo de transacción</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="tipo.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="tipo.invalid && tipo.touched"></i> 
+          <select multiple class="form-control" 
+                  id="tipo"
+                  ngModel
+                  name="tipo"
+                  required
+                  #tipo="ngModel">
+                  <option *ngFor="let tip of tipoTransaccion"
+                  [value]="tip">{{tip}} </option> 
+          </select>
+          <p class="alert alert-danger" *ngIf="tipo.invalid && tipo.touched">
+            Escoge tipo de transacción
+          </p>
+        </div> 
+
+        <div class="form-group">
+          <label>Precio</label>
+           <i class="fa fa-check-circle check" 
+               *ngIf="precio.valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="precio.invalid && precio.touched"></i>
+          <input type="number" 
+                 class="form-control"
+                 id="precio"
+                 name="precio"
+                 ngModel
+                 required
+                 #precio="ngModel">
+          <p class="alert alert-danger" *ngIf="precio.invalid && precio.touched">
+            El campo Precio es obligatorio.
+          </p>
+        </div>
+
+        <div class="form-group">
           <label>Dirección del inmueble</label>
            <i class="fa fa-check-circle check" 
                *ngIf="direccion.valid"></i>

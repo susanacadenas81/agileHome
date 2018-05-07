@@ -38,11 +38,14 @@ export class FormuInmuebleComponent implements OnInit {
      'Zamora','Zaragoza' ]
 
    caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
+   tipoTransaccion:string[] = ["Alquiler","Venta"]
 
   constructor(private flashMensaje:FlashMessagesService,private inmuebleServ:InmuebleServService,private router:Router,private storage: AngularFireStorage,public authService:AuthService) {
     this.inmueble = {
       nombre: '',
       ape: '',
+      tipo:'',
+      precio:0,
       direccion: '',
       cp: '',
       localidad: '',
@@ -66,6 +69,8 @@ export class FormuInmuebleComponent implements OnInit {
 
     this.inmueble.nombre = this.forminm.value.nombre;
     this.inmueble.ape = this.forminm.value.ape;
+    this.inmueble.precio = this.forminm.value.precio;
+    this.inmueble.tipo = this.forminm.value.tipo;
     this.inmueble.direccion = this.forminm.value.direccion;
     this.inmueble.cp = this.forminm.value.cp;
     this.inmueble.localidad = this.forminm.value.localidad;
