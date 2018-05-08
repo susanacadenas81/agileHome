@@ -47,14 +47,14 @@
                *ngIf="tipo.valid"></i>
           <i class="fa fa-exclamation-circle uncheck"
                *ngIf="tipo.invalid && tipo.touched"></i> 
-          <select multiple class="form-control" 
+          <select class="form-control" 
                   id="tipo"
                   ngModel
                   name="tipo"
                   required
                   #tipo="ngModel">
                   <option *ngFor="let tip of tipoTransaccion"
-                  [value]="tip">{{tip}} </option> 
+                  value="tip">{{tip}} </option> 
           </select>
           <p class="alert alert-danger" *ngIf="tipo.invalid && tipo.touched">
             Escoge tipo de transacción

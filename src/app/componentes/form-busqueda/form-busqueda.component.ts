@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { InmuebleServService } from '../../servicios/inmueble-serv.service'
 
 @Component({
   selector: 'app-form-busqueda',
@@ -6,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-busqueda.component.scss']
 })
 export class FormBusquedaComponent implements OnInit {
-private tipoTransaccion:Array<String>;
+
+@ViewChild('forminm') forminm: NgForm;
+private tipoTransaccion:Array<String> = ["Alquiler", "Venta"];
 private busqueda: any;
 private provincias: string[] = [ 'Álava','Albacete','Alicante','Almería','Asturias','Ávila','Badajoz',
      'Barcelona','Burgos', 'Cáceres', 'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba',
@@ -17,10 +21,44 @@ private provincias: string[] = [ 'Álava','Albacete','Alicante','Almería','Astu
      'Zamora','Zaragoza' ]
 
 private caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
-  constructor() { }
+  constructor(private inmuebleServ : InmuebleServService ) { }
 
   ngOnInit() {
-  	this.tipoTransaccion = ["Alquiler", "Venta"];
+
+  	this.busqueda = {
+
+  		tipo : '',
+  		precioMax : 0,
+  		localidad : '',
+  		provincia : '',
+  		car : []
+
+  	}
+
+  }
+
+  enviarForm(){
+
+  	this.busqueda.tipo = this.forminm.value.tipo;
+  	this.busqueda.precioMax = this.forminm.value.precioMax;
+  	this.busqueda.localidad = this.forminm.value.localidad;
+  	this.busqueda.provincia = this.forminm.value.provincia;
+  	this.busqueda.car = this.forminm.value.car;
+  	console.log(this.busqueda);
+
+  	let resul = [];
+  	let bus = this.inmuebleServ.getInmuebles();
+  	bus.subscribe(res=> {for (let re in res){
+  		console.log(res[re].provincia);
+  		console.log(this.busqueda.provincia);
+  			if(res[re].provincia == this.busqueda.provincia){
+  			resul.push(res[re]);
+  			}
+  		}
+  		console.log(resul);
+  	})
+
+  	
 
   }
 
