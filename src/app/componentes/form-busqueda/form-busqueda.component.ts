@@ -21,6 +21,7 @@ private provincias: string[] = [ 'Álava','Albacete','Alicante','Almería','Astu
      'Zamora','Zaragoza' ]
 
 private caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
+
   constructor(private inmuebleServ : InmuebleServService ) { }
 
   ngOnInit() {
@@ -28,7 +29,7 @@ private caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urb
   	this.busqueda = {
 
   		tipo : '',
-  		precioMax : 0,
+  		precio : 0,
   		localidad : '',
   		provincia : '',
   		car : []
@@ -40,26 +41,71 @@ private caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urb
   enviarForm(){
 
   	this.busqueda.tipo = this.forminm.value.tipo;
-  	this.busqueda.precioMax = this.forminm.value.precioMax;
+  	this.busqueda.precio = this.forminm.value.precio;
   	this.busqueda.localidad = this.forminm.value.localidad;
   	this.busqueda.provincia = this.forminm.value.provincia;
   	this.busqueda.car = this.forminm.value.car;
-  	console.log(this.busqueda);
 
   	let resul = [];
   	let bus = this.inmuebleServ.getInmuebles();
-  	bus.subscribe(res=> {for (let re in res){
-  		console.log(res[re].provincia);
-  		console.log(this.busqueda.provincia);
-  			if(res[re].provincia == this.busqueda.provincia){
-  			resul.push(res[re]);
+  	let bool : Boolean = true;
+  	let pre : number = this.forminm.value.precio;
+  	let ca : string[] = this.forminm.value.car;
+
+  	bus.subscribe(
+  		res=> {
+  		for (let pos in res){
+
+  			bool = true;
+  			this.busqueda.car = ca;
+
+  			for(let car in this.busqueda.car){
+
+  				if(this.busqueda.car[car]!="" && !res[pos].car.includes(this.busqueda.car[car])){
+
+  					bool = false;
+
+  				}
   			}
+  			
+
+  			if(bool){
+
+  				ca = this.busqueda.car;
+  				this.busqueda.car = "";
+  				this.busqueda.precio = pre;
+  				
+
+  				if(res[pos].precio <= this.busqueda.precio){
+
+  					pre = this.busqueda.precio;
+  					this.busqueda.precio= "";
+
+  					for(let buscar in this.busqueda){
+
+  						if(res[pos][buscar] != this.busqueda[buscar] && this.busqueda[buscar] != ""){
+
+  							bool = false;
+
+  						}
+
+  					}
+  			
+  				if (bool) {
+  					resul.push(res[pos]);
+  				}
+
+  				bool = true;
+
+  				}
+  			}
+  		
   		}
+
   		console.log(resul);
-  	})
-
-  	
-
+  		this.forminm.reset();
+  		
+  	});
   }
 
 }

@@ -54,7 +54,7 @@
                   required
                   #tipo="ngModel">
                   <option *ngFor="let tip of tipoTransaccion"
-                  value="tip">{{tip}} </option> 
+                  [value]="tip">{{tip}} </option> 
           </select>
           <p class="alert alert-danger" *ngIf="tipo.invalid && tipo.touched">
             Escoge tipo de transacción
@@ -143,11 +143,10 @@
                   id="provincia"
                   ngModel
                   name="provincia"
-                  required
                   #provincia="ngModel">
                   <option value="">Seleccione la provincia</option> 
                   <option *ngFor="let provincia of provincias"
-                  [value]="provincia">{{provincia}} </option> 
+                  [value]="provincia"> {{provincia}} </option> 
           </select>
           <p class="alert alert-danger" *ngIf="provincia.invalid && provincia.touched">
             El campo Provincia es obligatorio.

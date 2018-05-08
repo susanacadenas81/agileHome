@@ -38,7 +38,7 @@ export class FormuInmuebleComponent implements OnInit {
      'Zamora','Zaragoza' ]
 
    caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
-   tipoTransaccion:string[] = ["Alquiler","Venta"]
+   tipoTransaccion:Array<String> = ["Alquiler", "Venta"];
 
   constructor(private flashMensaje:FlashMessagesService,private inmuebleServ:InmuebleServService,private router:Router,private storage: AngularFireStorage,public authService:AuthService) {
     this.inmueble = {
