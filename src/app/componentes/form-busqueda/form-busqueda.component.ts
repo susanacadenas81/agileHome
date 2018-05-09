@@ -21,6 +21,8 @@ private provincias: string[] = [ 'Álava','Albacete','Alicante','Almería','Astu
      'Zamora','Zaragoza' ]
 
 private caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
+private vista = true;
+private resul =[];
 
   constructor(private inmuebleServ : InmuebleServService ) { }
 
@@ -46,7 +48,8 @@ private caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urb
   	this.busqueda.provincia = this.forminm.value.provincia;
   	this.busqueda.car = this.forminm.value.car;
 
-  	let resul = [];
+
+  	
   	let bus = this.inmuebleServ.getInmuebles();
   	let bool : Boolean = true;
   	let pre : number = this.forminm.value.precio;
@@ -92,7 +95,7 @@ private caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urb
   					}
   			
   				if (bool) {
-  					resul.push(res[pos]);
+  					this.resul.push(res[pos]);
   				}
 
   				bool = true;
@@ -102,10 +105,15 @@ private caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urb
   		
   		}
 
-  		console.log(resul);
+  		console.log(this.resul);
   		this.forminm.reset();
+  		this.vista = false;
   		
   	});
+  }
+  cambioVista(){
+  	this.vista = true;
+  	document.location.href = document.location.href;
   }
 
 }
