@@ -19,7 +19,7 @@ import { FormBusquedaComponent } from './componentes/form-busqueda/form-busqueda
 
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
-import { FlashMessagesService } from 'angular2-flash-messages'
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';

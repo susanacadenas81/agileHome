@@ -54,66 +54,42 @@ private resul =[];
   	let bool : Boolean = true;
   	let pre : number = this.forminm.value.precio;
   	let ca : string[] = this.forminm.value.car;
+    let caract : Boolean = true;
 
   	bus.subscribe(
   		res=> {
-  		for (let pos in res){
+        for (let pos in res){
+        if(this.busqueda.tipo == res[pos].tipo){
+          if(this.busqueda.precio==0 || res[pos].precio <= this.busqueda.precio){
+            if(this.busqueda.localidad == "" || res[pos].localidad == this.busqueda.localidad){
+              if(this.busqueda.provincia == "" || res[pos].provincia == this.busqueda.provincia){
+                for(let ca of this.busqueda.car){
+                  if( !res[pos].car.includes(ca) )
+                    { 
+                      caract = false;
+                    }
+                }
+                if(caract){
+                this.resul.push(res[pos]);
+                }
+                caract = true;
+              }
+            }
+          }
+        }
 
-  			bool = true;
-  			this.busqueda.car = ca;
+        }
 
-  			for(let car in this.busqueda.car){
-
-  				if(this.busqueda.car[car]!="" && !res[pos].car.includes(this.busqueda.car[car])){
-
-  					bool = false;
-
-  				}
-  			}
-  			
-
-  			if(bool){
-
-  				ca = this.busqueda.car;
-  				this.busqueda.car = "";
-  				this.busqueda.precio = pre;
-  				
-
-  				if(res[pos].precio <= this.busqueda.precio){
-
-  					pre = this.busqueda.precio;
-  					this.busqueda.precio= "";
-
-  					for(let buscar in this.busqueda){
-
-  						if(res[pos][buscar] != this.busqueda[buscar] && this.busqueda[buscar] != ""){
-
-  							bool = false;
-
-  						}
-
-  					}
-  			
-  				if (bool) {
-  					this.resul.push(res[pos]);
-  				}
-
-  				bool = true;
-
-  				}
-  			}
-  		
-  		}
-
-  		console.log(this.resul);
   		this.forminm.reset();
   		this.vista = false;
   		
   	});
   }
+
+  //Botón volver
   cambioVista(){
   	this.vista = true;
-  	document.location.href = document.location.href;
+    this.resul = [];
   }
 
 }
