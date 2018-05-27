@@ -29,6 +29,7 @@ import { environment } from '../environments/environment';
 import{ AuthService } from './servicios/auth.service';
 import { InmuebleServService } from './servicios/inmueble-serv.service';
 import { AuthGuard } from './guards/auth.guard';
+import { ResultadoBusquedaComponent } from './componentes/form-busqueda/resultado-busqueda/resultado-busqueda.component';
 
 
 
@@ -45,7 +46,8 @@ import { AuthGuard } from './guards/auth.guard';
     PrivateComponent,
     NotFoundComponent,
     FormuInmuebleComponent,
-    FormBusquedaComponent
+    FormBusquedaComponent,
+    ResultadoBusquedaComponent
   ],
   imports: [
     BrowserModule,

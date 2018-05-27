@@ -7,6 +7,7 @@ import { PrivateComponent } from './componentes/private/private.component';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { FormuInmuebleComponent } from './componentes/formu-inmueble/formu-inmueble.component';
 import { FormBusquedaComponent } from './componentes/form-busqueda/form-busqueda.component';
+import { ResultadoBusquedaComponent } from './componentes/form-busqueda/resultado-busqueda/resultado-busqueda.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
 {path:'busqueda',component:FormBusquedaComponent},
 {path:'private',component:PrivateComponent, canActivate : [AuthGuard]},
 {path:'formInm',component:FormuInmuebleComponent, canActivate : [AuthGuard]},
+{path: 'resultado', component:ResultadoBusquedaComponent},
 {path:'**', component: NotFoundComponent}
 ];
 

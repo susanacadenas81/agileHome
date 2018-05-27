@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { InmuebleServService } from '../../servicios/inmueble-serv.service'
 
@@ -20,14 +20,15 @@ private provincias: string[] = [ 'Álava','Albacete','Alicante','Almería','Astu
      'Tarragona','Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya',
      'Zamora','Zaragoza' ]
 
-private caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
+caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
 private vista = true;
 private resul =[];
+
 
   constructor(private inmuebleServ : InmuebleServService ) { }
 
   ngOnInit() {
-
+var saludo = "Hola";
   	this.busqueda = {
 
   		tipo : '',

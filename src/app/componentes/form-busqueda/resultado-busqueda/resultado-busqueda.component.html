@@ -1,0 +1,22 @@
+<div *ngFor="let x of resul">
+  <div class="card mb-3">
+  <h3 class="card-header" (click)="amplInf()">{{x.titulo}} <i *ngIf="x.llave" class="fa fa-key"></i> </h3>
+  <h4 class = "card-header"> Precio : {{x.precio}}</h4>
+  <div class = "card-body">
+  <img src={{x.foto}} alt="Sin Imágenes" style="width: 50%;" (click)="amplInf()">
+
+  <div class="card-body">
+    <p class="card-text">{{x.des}}</p>
+    <hr class="my-4">
+    <h5>Características:</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngFor="let ca of x.car">{{ca}}</li>
+  </ul>
+   <div class="card-body">
+    <h4>{{x.nombre}} {{x.ape}} {{x.telefono}}</h4>
+  </div>
+
+</div>
+</div>
+</div>
