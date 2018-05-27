@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { InmuebleServService } from '../../servicios/inmueble-serv.service'
-
+//paginación de resultados
 @Component({
   selector: 'app-form-busqueda',
   templateUrl: './form-busqueda.component.html',
