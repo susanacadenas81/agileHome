@@ -28,15 +28,13 @@ private resul =[];
   constructor(private inmuebleServ : InmuebleServService ) { }
 
   ngOnInit() {
-var saludo = "Hola";
-  	this.busqueda = {
 
-  		tipo : '',
+  	this.busqueda = {
+    	tipo : '',
   		precio : 0,
   		localidad : '',
   		provincia : '',
   		car : []
-
   	}
 
   }
@@ -61,7 +59,7 @@ var saludo = "Hola";
   		res=> {
         for (let pos in res){
         if(this.busqueda.tipo == res[pos].tipo){
-          if(this.busqueda.precio==0 || res[pos].precio <= this.busqueda.precio){
+          if(this.busqueda.precio==0 ||this.busqueda.precio == null|| res[pos].precio <= this.busqueda.precio){
             if(this.busqueda.localidad == "" || res[pos].localidad == this.busqueda.localidad){
               if(this.busqueda.provincia == "" || res[pos].provincia == this.busqueda.provincia){
                 for(let ca of this.busqueda.car){
@@ -78,7 +76,6 @@ var saludo = "Hola";
             }
           }
         }
-
         }
 
   		this.forminm.reset();

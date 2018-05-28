@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-resultado-busqueda',
@@ -8,12 +8,19 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ResultadoBusquedaComponent implements OnInit {
 
   @Input()resul: Array<any>;
+  pag : Number = 3;
+  min : Number = 0;
 
-  constructor() { 
+  constructor(private ref: ChangeDetectorRef){ 
   }
 
   ngOnInit() {
 
+  }
+  paginacion(p,min){
+  	this.min = min;
+  	this.pag = p;
+  	this.ref.reattach();
   }
 
 

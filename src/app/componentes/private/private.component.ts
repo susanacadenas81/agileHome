@@ -14,6 +14,7 @@ export class PrivateComponent implements OnInit {
   private inmueblesPublicados:Object;
   public inms:Array<any>;
   private inmueblesPub : Boolean;
+  //problemas con la llave, no se graba bien en la BBDD
 
   //crear una nueva vista para ampliar información del inm
 
@@ -59,7 +60,7 @@ export class PrivateComponent implements OnInit {
   express(inm,id){
 
     inm.llave=!inm.llave;
-    this.inmuebleServ.putInmueble(inm,id);
+    this.inmuebleServ.putInmueble(inm,id).subscribe(res=>console.log(res));
 
   }
 
