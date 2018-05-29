@@ -14,11 +14,8 @@ export class PrivateComponent implements OnInit {
   private inmueblesPublicados:Object;
   public inms:Array<any>;
   private inmueblesPub : Boolean;
-  //problemas con la llave, no se graba bien en la BBDD
 
-  //crear una nueva vista para ampliar información del inm
-
-  //subir varias fotos
+  //subir varias fotos asi en la vista ampliada se podria hacer un carrusel
 
   //borrar imágenes al borrar el inmueble
 

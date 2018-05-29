@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { InmuebleServService } from '../../servicios/inmueble-serv.service'
-//paginación de resultados
+//refactorizar la paginación y hacer que si son mas de ciertas paginas que ponga primeras...ultimas
 @Component({
   selector: 'app-form-busqueda',
   templateUrl: './form-busqueda.component.html',
