@@ -1,41 +1,38 @@
+<div class="jumbotron">
 <div *ngIf="!amp">
 
-    <div *ngFor="let x of resul2;let i = index">
+    <div *ngFor="let x of resul2;let i = 'index'">
 
-        <div class="card mb-3" *ngIf="x!=undefined">
+        <div class="card mb-3" *ngIf="x!=undefined" (click)="ampliarInf(i)" style="cursor: pointer;">
 
-         <h3 class="card-header" (click)="ampliarInf(i)">{{x.titulo}} {{x.localidad}} ({{x.provincia}}) <i *ngIf="x.llave" class="fa fa-key"></i> </h3>
-         <h4 class = "card-header"> Precio : {{x.precio}}</h4>
+         <h5 class="card-header">{{x.titulo}} {{x.localidad}} ({{x.provincia}}) <i *ngIf="x.llave" class="fa fa-key"></i> </h5>
+         <h6 class = "card-header"> Precio : {{x.precio}}</h6>
 
          <div class = "card-body">
+          <div class="card-text" style="width: 50%">
 
-            <img src={{x.foto}} alt="Sin Imágenes" style="width: 50%;" (click)="ampliarInf(i)">
+            <img src={{x.foto}} alt="Sin Imágenes" style="float: left;width: 60%;max-height: 40%">
 
-              <div class="card-body">
+          </div>
+              
 
-                <p class="card-text">{{x.des}}</p>
-                <hr class="my-4">
-                <h5>Características:</h5>
 
-              </div>
+                 <ul class="list-group list-group-flush" style="float: left;width: 60%">
+                  
+                     <h5 class="list-group-item" style="float: left;"> Características : </h5>
+                      <li class="list-group-item">Habitaciones: </li>
+                      <li class="list-group-item">Baños: </li>
+                      <li class="list-group-item">Planta: </li>
 
-            <ul class="list-group list-group-flush">
-
-                <li class="list-group-item" *ngFor="let ca of x.car">{{ca}}</li>
-
-            </ul>
-
-              <div class="card-body">
-
-                <h4>{{x.nombre}} {{x.ape}} {{x.telefono}}</h4>
-
-              </div>
+                  </ul>
 
           </div> 
 
-      </div>
+      </div> 
 
-  </div>
+    </div>
+
+<!--paginación-->
 
     <div>
 
@@ -49,7 +46,13 @@
 
        <li class="page-item active" *ngFor="let x of resul;let i = 'index'">
 
-          <a class="page-link" *ngIf="i<resul.length/3" (click)="pasaPagina(i+1)">{{i+1}}</a>
+        <div class="page-item disabled" *ngIf="p==i+1">
+
+          <a class="page-link">{{i+1}}</a>
+
+        </div>
+
+          <a class="page-link" *ngIf="i<resul.length/3 && p!=i+1" (click)="pasaPagina(i+1)">{{i+1}}</a>
 
        </li>
 
@@ -63,15 +66,15 @@
 
     </div> 
 
-</div> 
-
+ 
+</div>
 
 
 <!---------Vista Ampliada-------->
 
 
 <div *ngIf=amp>
-
+  <button class="btn btn-primary btn-lg" (click) = "volverListado()" style="float: right;">Volver al listado</button>
   <h3 class="card-header">{{inmAmpli.titulo}} {{inmAmpli.localidad}} ({{inmAmpli.provincia}}) <i *ngIf="inmAmpli.llave" class="fa fa-key"></i> </h3>
   <h4 class = "card-header"> Precio : {{inmAmpli.precio}}</h4>
 
@@ -98,8 +101,6 @@
          <h4>{{inmAmpli.nombre}} {{inmAmpli.ape}} {{inmAmpli.telefono}}</h4>
 
       </div>
-
-  <button class="button" (click)="volverListado()">Volver al listado</button>
 
 </div>
 

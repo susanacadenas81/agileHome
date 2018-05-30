@@ -9,7 +9,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ResultadoBusquedaComponent implements OnInit {
 
 //Mejorar vista de información ampliada
-//La pagina de resultados mejor tipo tabla, algo más pequeña para que se note la diferencia con la vista ampliada
 
   @Input()resul: Array<any>;
   resul2 : Array<any> = [];
@@ -29,7 +28,7 @@ export class ResultadoBusquedaComponent implements OnInit {
   }
 
   ampliarInf(i){
-
+  	scroll(0,0);
   	this.inmAmpli=this.resul2[i];
   	this.amp = true;
 

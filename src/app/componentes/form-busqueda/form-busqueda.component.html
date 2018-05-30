@@ -1,5 +1,6 @@
-<div class="row" *ngIf="vista">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">    
+<div class="jumbotron">
+<div class="" *ngIf="vista">
+  <div >    
     <h2>Búsqueda de inmuebles</h2>
     <form (ngSubmit)="enviarForm()" #forminm="ngForm">
     	   <div class="form-group">
@@ -74,7 +75,7 @@
         </div> 
 
       <button type="submit" 
-              class="btn btn-success"
+              class="btn btn-primary btn-lg"
               [disabled]="!forminm.valid"
               >Buscar</button>
  
@@ -85,11 +86,7 @@
   </div>
 </div>
 
+  
 <!------------------Vista Resultado Búsqueda---------------->
 <app-resultado-busqueda [resul]="resul" *ngIf="!vista"></app-resultado-busqueda>
-
-<div class="jumbotron mt-3" *ngIf = "!vista">
-<p class="lead">
-    <button class="btn btn-primary btn-lg" (click) = "cambioVista()" >Volver</button>
-</p>
 </div>
