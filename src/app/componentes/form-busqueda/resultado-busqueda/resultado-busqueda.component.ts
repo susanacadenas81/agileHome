@@ -7,13 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./resultado-busqueda.component.scss']
 })
 export class ResultadoBusquedaComponent implements OnInit {
+
 //Mejorar vista de información ampliada
+//La pagina de resultados mejor tipo tabla, algo más pequeña para que se note la diferencia con la vista ampliada
 
   @Input()resul: Array<any>;
   resul2 : Array<any> = [];
   p: Number = 1;
-  pag : Number = 3;
-  min : Number = 0;
   inmAmpli: Object;
   amp : Boolean = false;
   inter : Boolean = true;
@@ -23,23 +23,34 @@ export class ResultadoBusquedaComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.pasaPagina(this.p);
+
+  	this.pasaPagina(this.p);//Cuando carga el componente muestra ya la primera pagina de resultados
+
   }
+
   ampliarInf(i){
-  	this.inmAmpli=this.resul[i];
+
+  	this.inmAmpli=this.resul2[i];
   	this.amp = true;
+
   }
+
   volverListado(){
+
   	this.amp = false;
+
   }
+
   pasaPagina(numPag){
+
   	this.resul2 = [];
   	this.p=numPag;
-  	for (let i = (numPag-1)*3;i<=(numPag*3)-1;i++){
-  	this.resul2.push(this.resul[i]);
-  	}
-  	this.inter = !this.inter;
-  	scroll(0,0);
+
+  		for (let i = (numPag-1)*3;i<=(numPag*3)-1;i++){
+  			this.resul2.push(this.resul[i]);
+  		}
+
+  	scroll(0,0);//Vuelve a subir el scroll para ver la página desde el principio al pasar
 
   }
 
