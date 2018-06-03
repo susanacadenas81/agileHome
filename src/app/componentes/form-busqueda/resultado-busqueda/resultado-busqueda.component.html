@@ -1,25 +1,39 @@
-<div class="jumbotron">
+
 <div *ngIf="!amp">
 
     <div *ngFor="let x of resul2;let i = 'index'">
 
-        <div class="card mb-3" *ngIf="x!=undefined" (click)="ampliarInf(i)" style="cursor: pointer;">
+        <div class="card mb-3" *ngIf="x!=undefined" (click)="ampliarInf(i)" >
 
-         <h5 class="card-header">{{x.titulo}} {{x.localidad}} ({{x.provincia}}) <i *ngIf="x.llave" class="fa fa-key"></i> </h5>
-         <h6 class = "card-header"> Precio : {{x.precio}}</h6>
+         <h5 class="card-header">
+
+          {{x.titulo}} 
+          {{x.localidad}} 
+          ({{x.provincia}}) 
+           <i *ngIf="x.llave" class="fa fa-key"></i> 
+
+         </h5>
+
+         <h6 class = "card-header"> 
+
+         Precio : {{x.precio}}
+
+         </h6>
 
          <div class = "card-body">
-          <div class="card-text" style="width: 50%">
 
-            <img src={{x.foto}} alt="Sin Imágenes" style="float: left;width: 60%;max-height: 40%">
+          <div class="card-text">
+
+            <img src={{x.foto}} class = "foto-portada" alt="Sin Imágenes">
 
           </div>
               
 
 
-                 <ul class="list-group list-group-flush" style="float: left;width: 60%">
+                 <ul class="list-group list-group-flush">
                   
-                     <h5 class="list-group-item" style="float: left;"> Características : </h5>
+                     <h5 class="list-group-item"> Características : </h5>
+
                       <li class="list-group-item">Habitaciones: </li>
                       <li class="list-group-item">Baños: </li>
                       <li class="list-group-item">Planta: </li>
@@ -30,11 +44,11 @@
 
       </div> 
 
-    </div>
+   </div>
 
 <!--paginación-->
 
-    <div>
+    <div class="paginacion">
 
       <ul class="pagination pagination-lg">
 
@@ -74,18 +88,45 @@
 
 
 <div *ngIf=amp>
-  <button class="btn btn-primary btn-lg" (click) = "volverListado()" style="float: right;">Volver al listado</button>
-  <h3 class="card-header">{{inmAmpli.titulo}} {{inmAmpli.localidad}} ({{inmAmpli.provincia}}) <i *ngIf="inmAmpli.llave" class="fa fa-key"></i> </h3>
+
+  <button class="btn btn-primary btn-lg" (click) = "volverListado()">Volver al listado</button>
+
+  <h3 class="card-header">
+
+    {{inmAmpli.titulo}} 
+    {{inmAmpli.localidad}} 
+    ({{inmAmpli.provincia}}) 
+
+      <i *ngIf="inmAmpli.llave" class="fa fa-key"></i> 
+
+  </h3>
+
   <h4 class = "card-header"> Precio : {{inmAmpli.precio}}</h4>
 
   <div class = "card-body">
 
-      <img src={{inmAmpli.foto}} alt="Sin Imágenes" style="width: 50%;">
+      <img src={{inmAmpli.foto}} class="foto-ampliada" alt="Sin Imágenes">
 
       <div class="card-body">
 
-        <p class="card-text">{{inmAmpli.des}}</p>
+        <p>
+          
+          Habitaciones:<br/>
+          Baños:<br/>
+          Metros:<br/>
+          Año de construcción: <br/>
+
+
+        </p>
+
+        <p class="card-text">
+
+        {{inmAmpli.des}}
+
+        </p>
+
         <hr class="my-4">
+
         <h5>Características:</h5>
 
       </div>
@@ -103,4 +144,3 @@
       </div>
 
 </div>
-
