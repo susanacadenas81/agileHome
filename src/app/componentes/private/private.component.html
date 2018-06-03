@@ -8,9 +8,8 @@
   <div class="card mb-3">
   <h3 class="card-header" (click)="amplInf()">{{x.titulo}} <i *ngIf="x.llave" class="fa fa-key"></i> </h3>
   <h4 class = "card-header"> Precio : {{x.precio}}</h4>
-  <div class = "card-body">
-  <img src={{x.foto}} alt="Sin Imágenes" style="width: 50%;" (click)="amplInf()">
-
+  <div class = "card-body" >
+  <img src={{x.foto[0]}} alt="Sin Imágenes" style="width: 50%;" (click)="amplInf()">
   <div class="card-body">
     <p class="card-text">{{x.des}}</p>
     <hr class="my-4">

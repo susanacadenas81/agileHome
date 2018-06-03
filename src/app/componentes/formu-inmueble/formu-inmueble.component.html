@@ -232,7 +232,8 @@
 		<div class="form-group">
           <label>Fotos</label>
           <input type="file" 
-          (change)="uploadFile($event)" 
+                multiple=true 
+                (change)="uploadFile($event)" 
                  class="form-control"
                  id="foto"
                  name="foto"
@@ -242,7 +243,7 @@
 
       <button type="submit" 
               class="btn btn-success"
-              [disabled]="!forminm.valid"
+              [disabled]="!forminm.valid || !adelante"
               >Añadir Inmueble</button>
       <p class="alert alert-danger " *ngIf="!forminm.valid">
         Por favor complete todos los campos

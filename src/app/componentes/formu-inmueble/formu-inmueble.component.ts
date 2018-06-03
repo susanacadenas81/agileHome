@@ -23,9 +23,9 @@ export class FormuInmuebleComponent implements OnInit {
 
   uploadPercent: Observable<number>;
 
-  downloadURL: Observable<string>;
+  downloadURL: Observable<Object>;
 
-  url:any;
+  url:Array<any>=[];
 
   usuario:any;
 
@@ -39,6 +39,7 @@ export class FormuInmuebleComponent implements OnInit {
 
    caracteristicas:string[] = ["Garaje","Piscina","Jardín","Ascensor","Urbanización","Aire Acondicionado","Parquet","Calefacción"]
    tipoTransaccion:Array<String> = ["Alquiler", "Venta"];
+   adelante:Boolean = false;
 
   constructor(private flashMensaje:FlashMessagesService,private inmuebleServ:InmuebleServService,private router:Router,private storage: AngularFireStorage,public authService:AuthService) {
     this.inmueble = {
@@ -54,7 +55,7 @@ export class FormuInmuebleComponent implements OnInit {
       titulo: '',
       des: '',
       car:[],
-      foto:'',
+      foto:[],
       user:'',
       llave: Boolean,
     }
@@ -94,11 +95,18 @@ export class FormuInmuebleComponent implements OnInit {
   }
 
   uploadFile(event) {
-    const file = event.target.files[0];
-    const filePath = 'img/inmuebles/'+this.forminm.value.foto;
+ 
+    for ( let foto of event.target.files){
+    const file = foto;
+    const filePath = 'img/inmuebles/'+foto.name;
     const task = this.storage.upload(filePath, file);
     this.downloadURL = task.downloadURL();
-    this.downloadURL.subscribe(desc=>this.url = desc.valueOf());
+    this.downloadURL.subscribe(desc=>{this.url.push(desc.valueOf());
+console.log(this.url);
+    });
+    
+    }
+    this.adelante = true;
   }
 
 }
